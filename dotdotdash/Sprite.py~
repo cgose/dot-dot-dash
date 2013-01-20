@@ -1,0 +1,14 @@
+from Drawable import *
+class Sprite(Drawable):
+    def __init__(self,imageloc):
+        super(Sprite, self).__init__(imageloc)
+        self.xVel = 0
+        self.yVel = 0
+        self.changePhysicality()
+    def move(self):
+        self.loc[0] = self.loc[0] + self.xVel
+        self.loc[1] = self.loc[1] + self.yVel
+    def updateVel(self, xAccel, yAccel):
+        self.xVel = self.xVel + xAccel
+        self.yVel = self.yVel + yAccel
+        

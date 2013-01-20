@@ -1,0 +1,24 @@
+import pygame
+from pygame.locals import *
+
+class Drawable(object):
+    def __init__(self, imageloc):
+        self.loc = (5,5)
+        self.length = 0
+        self.width = 0
+        self.physical = False
+        self.picLoc = imageloc
+        self.image = pygame.image.load(self.picLoc)
+    def draw(self,surface):
+        surface.blit(self.image, self.loc)
+    def setPicLoc(self, path):
+        self.picLoc = path
+    def changePhysicality(self):
+        if self.physical == False:
+            self.physical = True
+        else:
+            self.physical = False
+    def move(self,newLoc):
+        self.loc[0] = newLoc[0]
+        self.loc[1] = newLoc[1]
+    

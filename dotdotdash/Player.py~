@@ -1,0 +1,26 @@
+from Sprite import *
+class Player(Sprite):
+    def __init__(self, imageLoc):
+        super(Player, self).__init__(imageLoc)
+        
+    def move(self,input):
+        if input == K_DOWN:
+            """duck"""
+        elif input == K_RIGHT:
+            """move right"""
+            self.xVel = 5
+        elif input == K_LEFT:
+            """move left"""
+            self.xVel = -5
+        elif input == K_UP:
+            """look up"""
+        elif input == K_a:
+            """run"""
+        elif input == K_s:
+            """attack"""
+        elif input == K_SPACE:
+            """jump"""
+            self.yVel = -10
+        else:
+            """After time passes have waiting animation"""
+        super(Player, self).move()

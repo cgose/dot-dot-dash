@@ -1,0 +1,27 @@
+import pygame, sys, Sprite, Player
+from pygame.locals import *
+from Sprite import *
+from Player import *
+pygame.init()
+
+FPS = 30
+fpsClock = pygame.time.Clock()
+
+DISPLAY = pygame.display.set_mode((800,400), 0, 32)
+pygame.display.set_caption('DotDotDASH')
+
+WHITE = (255,255,255)
+rabbit = Player('dot.png')
+pygame.key.set_repeat(1,50)
+while True:
+    DISPLAY.fill(WHITE)
+    rabbit.draw(DISPLAY)
+    for event in pygame.event.get():
+	if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == KEYDOWN:
+            rabbit.move(event.key)
+    pygame.display.update()
+    fpsClock.tick(FPS)
+    
