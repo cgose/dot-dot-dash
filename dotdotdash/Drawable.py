@@ -1,8 +1,8 @@
 import pygame
-from pygame.locals import *
 
 class Drawable(object):
     def __init__(self, imageloc):
+        #values are set for testing only will change after basic testing is done
         self.loc = [5,50]
         self.height = 10
         self.width = 10

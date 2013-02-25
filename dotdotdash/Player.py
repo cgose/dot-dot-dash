@@ -1,6 +1,5 @@
-import pygame, Sprite
 from Sprite import *
-from pygame.locals import *
+from pygame.locals import KEYDOWN,KEYUP,K_DOWN,K_RIGHT,K_LEFT,K_UP,K_DOWN,K_a,K_s,K_SPACE
 class Player(Sprite):
     def __init__(self, imageLoc):
         super(Player, self).__init__(imageLoc)
@@ -50,7 +49,9 @@ class Player(Sprite):
                 self.loc[1] -= 1
             else:
                 """Will have to put something else for later"""
-        elif input.type == KEYUP:
+
+        
+        elif input.type == KEYUP: #if key is released reset default values
             if input.key == K_DOWN:
                 """stand"""
             if input.key == K_RIGHT:
@@ -66,14 +67,14 @@ class Player(Sprite):
             if input.key == K_a and self.running == True:
                 """walk"""
                 if(self.xVel < 0):
-                    self.xVel += 5
-                elif(self.xVel > -5):
+                    self.xVel = 0
+                elif(self.xVel > 0):
                     self.xVel -= 5
                 self.running = False
                 self.walking = True
 
             if input.key == K_s:
-                """stop attack"""
+                """Stop Attacking"""
             else:
                 """Will have to put something else for later"""
        

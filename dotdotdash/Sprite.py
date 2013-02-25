@@ -1,3 +1,7 @@
+"""
+@author Cameron Gose
+@summary: Creates a sprite object which will be all objects that can interact with the Player class
+"""
 from Drawable import *
 class Sprite(Drawable):
     def __init__(self,imageloc):
@@ -12,7 +16,12 @@ class Sprite(Drawable):
     
     def setYVel(self,vel):
         self.yVel = vel
-    
+    """
+    @summary: Moves Sprite based on its x Velocity and y Velocity
+    @precondition: None
+    @postcondition: 
+    @return: None
+    """
     def move(self):
         self.loc[0] = self.loc[0] + self.xVel
         self.loc[1] = self.loc[1] + self.yVel
@@ -30,19 +39,25 @@ class Sprite(Drawable):
         """
     def update(self):
         """
-        Will probably have to be done separate depending on sprite behaviour
+        Will probably have to be done separate depending on sprite behavior
         Will most likely contain some sort of AI
         """
-        """
-        Check if Sprite has collided with any other object drawn on stage
-        """
+
+
+    """
+    Param: Drawable[]
+    Check if Sprite has collided with any other object drawn on stage and resolves collision
+    
+    @note: will remove as I decided to create a Collision Detector Object that will handle all collisions.
+    """
     def checkCollision(self,drawableArray):
         for x in drawableArray:
             #if object is physical
             #check for collision
+            """currently only checking player collision will have to change if statement later"""
             if(x.getPhysicality() == True and x.name != "player"):
+
                 #check for collision
-                #print(self.loc)
                 if(((self.getXCollision()[1] >= x.getXCollision()[0]) and
                    (self.getXCollision()[0] <= x.getXCollision()[1])) and
                    ((self.getYCollision()[1] >= x.getYCollision()[0]) and
@@ -50,22 +65,26 @@ class Sprite(Drawable):
                     """
                     ***Test***
                     """
-                    # print("There was a successful collision YAY! or NAY!")
-                    #Check if on the left or right of object
-                    if(self.getXCollision()[0] <= x.getXCollision()[0]):
-                        self.reposition((x.getXCollision()[0] - self.getWidth(),self.getY()))
-                    elif(self.getXCollision()[0] >= x.getXCollision()[1]):
-                        self.reposition((x.getXCollision()[1],self.getY()))
-                    
+                
                     #Check if above or below object of object
-                    elif((self.getYCollision()[0] <= x.getYCollision()[0])):
+                    if((self.getYCollision()[0] <= x.getYCollision()[0])):
                         self.reposition((self.getX(),x.getYCollision()[0]-self.getHeight()))
                         self.setYVel(0)
                     elif(self.getYCollision()[0] >= x.getYCollision()[1]):
                         #collision will cause self to stop
                         self.reposition((self.getX(),x.getYCollision()[1]))
                         self.setYVel(0)
+                    #Check if on the left or right of object
+                    elif(self.getXCollision()[0] <= x.getXCollision()[0]):
+                        self.reposition((x.getXCollision()[0] - self.getWidth(),self.getY()))
+                    elif(self.getXCollision()[0] >= x.getXCollision()[1]):
+                        self.reposition((x.getXCollision()[1],self.getY()))
+                    
+                
                 #check where self is colliding (what side of object)
                 
-                
+                """
+                @todo: Create method onCollision that determines effect of collision based on what type of sprite. Or create classes that inherit from Sprite
+                create function for each one. Second option probably best.
+                """
             
