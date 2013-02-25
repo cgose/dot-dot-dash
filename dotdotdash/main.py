@@ -21,14 +21,16 @@ block = Sprite('resources/dot.png')
 block2 = Sprite('resources/dot.png')
 block3 = Sprite('resources/dot.png')
 super(Sprite,block).move((400,175))
-#super(Sprite,block2).move((410,175))
-#super(Sprite,block3).move((420,175))
-drawables = [rabbit,block]
+super(Sprite,block2).move((410,175))
+super(Sprite,block3).move((420,175))
+drawables = [rabbit,block,block2,block3]
 
 while True:
     DISPLAY.fill(WHITE)
     for n in drawables:
         n.draw(DISPLAY)
+        CD.setObjects(drawables[0],n)
+        CD.checkCollision()
     pygame.draw.line(DISPLAY, BLACK, (0,200),(800,200),2)
     for event in pygame.event.get():
         if event.type == QUIT:

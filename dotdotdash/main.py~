@@ -1,12 +1,17 @@
+
 from Sprite import *
 from Player import *
+import pygame
+from pygame.locals import QUIT,KEYDOWN,KEYUP
+from CollisionDetector import *
 import sys
+
 pygame.init()
 
 FPS = 30
-G = 1
+GRAVITY = 1
 fpsClock = pygame.time.Clock()
-
+CD = CollisionDetector()
 DISPLAY = pygame.display.set_mode((800,400), 0, 32)
 pygame.display.set_caption('DotDotDASH!')
 BLACK = (0,0,0)
@@ -16,9 +21,9 @@ block = Sprite('resources/dot.png')
 block2 = Sprite('resources/dot.png')
 block3 = Sprite('resources/dot.png')
 super(Sprite,block).move((400,175))
-super(Sprite,block2).move((410,175))
-super(Sprite,block3).move((420,175))
-drawables = (rabbit,block,block2,block3)
+#super(Sprite,block2).move((410,175))
+#super(Sprite,block3).move((420,175))
+drawables = [rabbit,block]
 
 while True:
     DISPLAY.fill(WHITE)
@@ -31,9 +36,11 @@ while True:
             sys.exit()
         if event.type == KEYDOWN or event.type == KEYUP:
             rabbit.update(event)
-    rabbit.checkCollision(drawables)
+
+    CD.setObjects(rabbit,block)
+    CD.checkCollision()
     rabbit.move()
-    rabbit.updateVel(0,G)
+    rabbit.updateVel(0,GRAVITY)
     pygame.display.update()
     fpsClock.tick(FPS)
     

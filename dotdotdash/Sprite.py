@@ -87,4 +87,8 @@ class Sprite(Drawable):
                 @todo: Create method onCollision that determines effect of collision based on what type of sprite. Or create classes that inherit from Sprite
                 create function for each one. Second option probably best.
                 """
-            
+                """
+                def resolveCollision(self):
+                    #Will resolve based on type of object
+                    #enemy will probaby move back and forward if they collide into a object
+                """

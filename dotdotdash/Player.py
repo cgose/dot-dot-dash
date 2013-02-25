@@ -84,3 +84,15 @@ class Player(Sprite):
             self.jumping = False
             self.loc[1] = 200
         super(Player, self).move()
+
+    def resolveCollision(self,collisionType,location):
+        #will stop if colliding with tile
+        if collisionType == 'tile':
+            #if collision is on right of player
+            if location == 'right' or location == 'left':
+                self.xVel = 0
+            elif location == 'top':
+                self.yVel = 3
+            elif location == 'bottom':
+                self.yVel = 0
+            
